@@ -103,7 +103,7 @@ resource "aws_iam_instance_profile" "mongodb" {
 
 module "mongodb_backup_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.3.0"
+  version = "~> 3.5.0"
 
   bucket_prefix = "${var.env_name}-mongodb-backup-"
   acl           = "public-read"
