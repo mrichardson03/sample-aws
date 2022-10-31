@@ -49,7 +49,7 @@ module "mongodb_instance" {
 
   iam_instance_profile = aws_iam_instance_profile.mongodb.name
 
-  user_data = file("mongodb-user_data.sh")
+  user_data = file("${path.module}/mongodb-user_data.sh")
 
   tags = var.tags
 }
@@ -244,7 +244,7 @@ resource "helm_release" "jenkins" {
   version    = "4.2.9"
 
   values = [
-    "${file("jenkins-values.yaml")}"
+    "${file("${path.module}/jenkins-values.yaml")}"
   ]
 
   depends_on = [module.eks.cluster_id]
