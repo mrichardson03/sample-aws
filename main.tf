@@ -115,7 +115,7 @@ module "mongodb_backup_bucket" {
 
 module "mgmt_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.9.0"
+  version = "~> 4.16.0"
 
   name        = "Mgmt-SG"
   description = "Management Security Group"
@@ -131,7 +131,7 @@ module "mgmt_sg" {
 
 module "mongodb_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.8.0"
+  version = "~> 4.16.0"
 
   name        = "MongoDB-SG"
   description = "MongoDB Security Group"
