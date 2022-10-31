@@ -2,11 +2,18 @@ controller:
   serviceType: LoadBalancer
   serviceAnnotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
-# persistence:
-#   volumes:
-#     - name: mongodb-vol
-#       configMap:
-#         name: jenkins-mongodb
-#   mounts:
-#     - name: mongodb-vol
-#       mountPath: /var/mongodb
+
+  # persistence:
+  #   volumes:
+  #     - name: mongodb-vol
+  #       configMap:
+  #         name: jenkins-mongodb
+  #   mounts:
+  #     - name: mongodb-vol
+  #       mountPath: /var/mongodb
+
+  installPlugins:
+    - configuration-as-code:latest
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
