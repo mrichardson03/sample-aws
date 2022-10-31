@@ -29,7 +29,11 @@ Terraform will build the following:
 - S3 Bucket (globally accessible)
 - EKS cluster running [Jenkins Helm chart](https://github.com/jenkinsci/helm-charts)
 
-This can take 20-30 minutes.
+This can take 20-30 minutes.  Once done, you can log in to the MongoDB instance as `ubuntu` using the SSH key you created:
+
+```
+ssh -i <your ssh key file> ubuntu@<your mongodb instance>
+```
 
 ## Kubernetes
 
@@ -58,3 +62,5 @@ Get the IP address of the created load balancer with `kubectl get svc --namespac
 NAME      TYPE           CLUSTER-IP     EXTERNAL-IP                                                                     PORT(S)          AGE
 jenkins   LoadBalancer   172.20.22.93   ad10bd28b6d0a47e5ba86fa2ec26e588-5b6d630a56b225a3.elb.us-east-1.amazonaws.com   8080:31997/TCP   3m7s
 ```
+
+The Jenkins UI will be at http://<YOUR-EXTERNAL-IP>:8080.  You can login with `admin` and the password you retrieved above.
