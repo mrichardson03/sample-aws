@@ -26,5 +26,8 @@ jobs:
         run: |
           curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
 
-      - name: Run pre-commit checks (terraform fmt, validate, docs)
-        run: pre-commit run --color=always --show-diff-on-failure --all-files
+      - name: terraform fmt
+        run: pre-commit run terraform_fmt --color=always --show-diff-on-failure --all-files
+
+      - name: terraform validate
+        run: pre-commit run terraform_validate --color=always --show-diff-on-failure --all-files
