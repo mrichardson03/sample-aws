@@ -1,8 +1,6 @@
-resource "random_id" "role_id" {
-  byte_length = 8
-}
-
-## VPC
+###############################################################################
+## VPC                                                                       ##
+###############################################################################
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
@@ -33,7 +31,9 @@ module "vpc" {
   tags = var.tags
 }
 
-## MongoDB Instance
+###############################################################################
+## MongoDB Instance                                                          ##
+###############################################################################
 
 module "mongodb_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
@@ -54,7 +54,14 @@ module "mongodb_instance" {
   tags = var.tags
 }
 
-## Excessive IAM role for MongoDB instance
+###############################################################################
+## Excessive IAM role for MongoDB instance                                   ##
+###############################################################################
+
+# Make sure role has a unique name.
+resource "random_id" "role_id" {
+  byte_length = 8
+}
 
 resource "aws_iam_role" "mongodb" {
   name = "${var.env_name}-EC2FullAccessRole-${random_id.role_id.hex}"
@@ -99,7 +106,9 @@ resource "aws_iam_instance_profile" "mongodb" {
   path = "/"
 }
 
-## Publicly accessible S3 bucket
+###############################################################################
+## Publicly accessible S3 bucket                                             ##
+###############################################################################
 
 module "mongodb_backup_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
@@ -111,7 +120,9 @@ module "mongodb_backup_bucket" {
   tags = var.tags
 }
 
-## Security Groups
+###############################################################################
+## Security Groups                                                           ##
+###############################################################################
 
 module "mgmt_sg" {
   source  = "terraform-aws-modules/security-group/aws"
@@ -145,7 +156,9 @@ module "mongodb_sg" {
   tags = var.tags
 }
 
-## EKS Cluster
+###############################################################################
+## EKS Cluster                                                               ##
+###############################################################################
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
