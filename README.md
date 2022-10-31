@@ -6,13 +6,13 @@ Uses community modules from the [terraform-aws-modules](https://github.com/terra
 
 Create a keypair in the AWS Console (**EC2 > Network & Security > Key Pairs**).
 
-Add your keypair name to `terraform.tfvars`:
+Create `terraform.tfvars`, and add your keypair name:
 
 ```
 key_name = "<YOUR KEYPAIR NAME>"
 ```
 
-Other variables found in `variables.tf` can be customized here as well.
+Other variables found in `variables.tf` can be customized in `terraform.tfvars` as well.
 
 Run standard Terraform setup:
 
