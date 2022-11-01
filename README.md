@@ -1,5 +1,7 @@
 # sample-aws
 
+Terraform implementation of a vulnerable infrastructure in AWS.
+
 Uses community modules from the [terraform-aws-modules](https://github.com/terraform-aws-modules/) project.
 
 ## Usage
