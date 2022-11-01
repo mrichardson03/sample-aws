@@ -205,33 +205,31 @@ module "eks" {
   tags = var.tags
 }
 
-# resource "kubernetes_cluster_role_binding" "cluster_admin" {
-#   metadata {
-#     name = "cluster-admin"
-#   }
-#   role_ref {
-#     api_group = "rbac.authorization.k8s.io"
-#     kind      = "ClusterRole"
-#     name      = "cluster-admin"
-#   }
-#   subject {
-#     api_group = "rbac.authorization.k8s.io"
-#     kind      = "User"
-#     name      = "admin"
-#   }
-#   subject {
-#     api_group = "rbac.authorization.k8s.io"
-#     kind      = "User"
-#     name      = "kubelet"
-#   }
-#   subject {
-#     api_group = "rbac.authorization.k8s.io"
-#     kind      = "Group"
-#     name      = "system:serviceaccounts"
-#   }
-
-#   depends_on = [module.eks.cluster_id]
-# }
+resource "kubernetes_cluster_role_binding" "permissive_binding" {
+  metadata {
+    name = "permissive-binding"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-admin"
+  }
+  subject {
+    kind      = "User"
+    name      = "admin"
+    api_group = "rbac.authorization.k8s.io"
+  }
+  subject {
+    kind      = "User"
+    name      = "kubelet"
+    api_group = "rbac.authorization.k8s.io"
+  }
+  subject {
+    kind      = "Group"
+    name      = "system:serviceaccounts"
+    api_group = "rbac.authorization.k8s.io"
+  }
+}
 
 ###############################################################################
 ## Jenkins Helm release                                                      ##
