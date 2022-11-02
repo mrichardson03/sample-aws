@@ -175,10 +175,10 @@ module "eks" {
 
   eks_managed_node_groups = {
     "${var.env_name}-eks" = {
-      instance_type = "m5.large"
-      min_size      = 2
-      max_size      = 2
-      desired_size  = 2
+      instance_types = ["m5.large"]
+      min_size       = 1
+      max_size       = 2
+      desired_size   = 2
     }
   }
 
