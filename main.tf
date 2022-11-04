@@ -165,7 +165,7 @@ module "eks" {
   version = "~> 18.30.2"
 
   cluster_name    = "${var.env_name}-eks-cluster"
-  cluster_version = "1.23"
+  cluster_version = "1.21"
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
