@@ -38,6 +38,7 @@ using the SSH key you created:
 
 ```
 ssh -i <your ssh key file> ubuntu@<your mongodb instance>
+```
 
 ### Deploy Kubernetes resources
 
@@ -45,7 +46,6 @@ The Terraform configuration in `kubernetes/` deploys some vulnerable Kubernetes 
 - ClusterRoleBinding with excessive permissions
 - Jenkins [Helm chart](https://github.com/jenkinsci/helm-charts) behind widely accessible plain HTTP load balancer.
 
-```
 From the `kubernetes/` directory, run the standard Terraform commands:
 
 ```
