@@ -51,11 +51,11 @@ jobs:
         if: ${{ always() }}
         working-directory: kubernetes
         run: |
-          terraform destroy -auto-approve
+          terraform destroy -auto-approve -var 'cluster_name=ci-test-eks-cluster'
 
       - name: Tear down infrastructure
         if: ${{ always() }}
         working-directory: infrastructure
         run: |
-          terraform destroy -auto-approve
+          terraform destroy -auto-approve -var 'key_name=ci-test' -var 'env_name=ci-test'
           aws ec2 delete-key-pair --key-name ci-test
