@@ -48,7 +48,6 @@ jobs:
           terraform apply -auto-approve -var 'cluster_name=ci-test-eks-cluster'
 
       - name: Tear down Kubernetes resources
-        if: ${{ always() }}
         working-directory: kubernetes
         run: |
           terraform destroy -auto-approve -var 'cluster_name=ci-test-eks-cluster'
