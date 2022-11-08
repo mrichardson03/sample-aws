@@ -37,9 +37,9 @@ jobs:
       - name: Build infrastructure
         working-directory: infrastructure
         run: |
-          aws ec2 create-key-pair --key-name gh-test
+          aws ec2 create-key-pair --key-name ci-test
           terraform init
-          terraform apply -auto-approve -var 'key_name=gh-test' -var 'env_name=ci-test'
+          terraform apply -auto-approve -var 'key_name=ci-test' -var 'env_name=ci-test'
 
       - name: Deploy Kubernetes resources
         working-directory: kubernetes
@@ -58,4 +58,4 @@ jobs:
         working-directory: infrastructure
         run: |
           terraform destroy -auto-approve
-          aws ec2 delete-key-pair --key-name gh-test
+          aws ec2 delete-key-pair --key-name ci-test
