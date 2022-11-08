@@ -1,5 +1,6 @@
 name: "test-deployment"
 on:
+  push:
   schedule:
     - cron: "0 0 * * 5"
   workflow_dispatch:
