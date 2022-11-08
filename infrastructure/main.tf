@@ -37,7 +37,7 @@ module "vpc" {
 
 module "mongodb_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 4.1.0"
+  version = "~> 4.2.1"
 
   name = "mongodb"
 
