@@ -6,11 +6,11 @@ updates:
       interval: "monthly"
 
   - package-ecosystem: "terraform"
-    directory: "/"
+    directory: "/infrastructure"
     schedule:
       interval: "monthly"
 
-  - package-ecosystem: "gomod"
-    directory: "/test"
+  - package-ecosystem: "terraform"
+    directory: "/kubernetes"
     schedule:
       interval: "monthly"
