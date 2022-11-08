@@ -165,10 +165,17 @@ module "eks" {
   version = "~> 18.30.2"
 
   cluster_name    = "${var.env_name}-eks-cluster"
-  cluster_version = "1.21"
+  cluster_version = "1.23"
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
+
+  cluster_addons = {
+    aws-ebs-csi-driver = {
+      resolve_conflicts        = "OVERWRITE"
+      service_account_role_arn = module.ebs_csi_addon_irsa.iam_role_arn
+    }
+  }
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
@@ -203,6 +210,22 @@ module "eks" {
   }
 
   tags = var.tags
+}
+
+module "ebs_csi_addon_irsa" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version = "~> 5.5.0"
+
+  role_name = "AmazonEKS_EBS_CSI_DriverRole"
+
+  attach_ebs_csi_policy = true
+
+  oidc_providers = {
+    main = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:ebs-csi-controller-sa"]
+    }
+  }
 }
 
 ## Budget Notifications
