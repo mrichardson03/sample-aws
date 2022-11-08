@@ -2,8 +2,13 @@ provider "aws" {
   region = var.aws_region
 }
 
+# Wait for cluster API to be ready before reading.
+data "aws_eks_cluster" "default" {
+  name = module.eks.cluster_id
+}
+
 provider "kubernetes" {
-  host                   = module.eks.cluster_endpoint
+  host                   = data.aws_eks_cluster.default.endpoint
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 
   exec {
@@ -15,7 +20,7 @@ provider "kubernetes" {
 
 provider "helm" {
   kubernetes {
-    host                   = module.eks.cluster_endpoint
+    host                   = data.aws_eks_cluster.default.endpoint
     cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 
     exec {

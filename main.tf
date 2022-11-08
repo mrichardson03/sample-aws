@@ -244,8 +244,6 @@ resource "helm_release" "jenkins" {
   values = [
     "${file("${path.module}/jenkins-values.yaml")}"
   ]
-
-  depends_on = [module.eks.cluster_id]
 }
 
 ## Budget Notifications
