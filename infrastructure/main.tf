@@ -214,7 +214,7 @@ module "eks" {
 
 module "ebs_csi_addon_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "~> 5.5.0"
+  version = "~> 5.9.0"
 
   role_name = "AmazonEKS_EBS_CSI_DriverRole"
 
