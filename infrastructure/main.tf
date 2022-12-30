@@ -170,6 +170,8 @@ module "eks" {
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
 
+  create_kms_key = false
+
   cluster_addons = {
     aws-ebs-csi-driver = {
       resolve_conflicts        = "OVERWRITE"
