@@ -35,6 +35,6 @@ resource "helm_release" "jenkins" {
   version    = "4.2.18"
 
   values = [
-    "${file("${path.module}/jenkins-values.yaml")}"
+    file("${path.module}/jenkins-values.yaml")
   ]
 }

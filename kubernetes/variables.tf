@@ -5,6 +5,7 @@ variable "aws_region" {
 }
 
 variable "cluster_name" {
-  type    = string
-  default = "sample-aws-eks-cluster"
+  description = "EKS cluster name to deploy resources on."
+  type        = string
+  default     = "sample-aws-eks-cluster"
 }
