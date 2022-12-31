@@ -1,5 +1,5 @@
 output "cluster_name" {
-  value = module.eks.cluster_id
+  value = module.eks.cluster_name
 }
 
 output "mongodb_instance" {
