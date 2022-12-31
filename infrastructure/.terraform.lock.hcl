@@ -73,7 +73,8 @@ provider "registry.terraform.io/hashicorp/kubernetes" {
 }
 
 provider "registry.terraform.io/hashicorp/random" {
-  version = "3.4.3"
+  version     = "3.4.3"
+  constraints = ">= 3.4.0"
   hashes = [
     "h1:hV66lcagXXRwwCW3Y542bI1JgPo8z/taYKT7K+a2Z5U=",
     "h1:saZR+mhthL0OZl4SyHXZraxyaBNVMxiZzks78nWcZ2o=",
