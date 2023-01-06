@@ -37,7 +37,7 @@ module "vpc" {
 
 module "mongodb_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 4.2.1"
+  version = "~> 4.3.0"
 
   name = "mongodb"
 
@@ -162,7 +162,7 @@ module "mongodb_sg" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.4.0"
+  version = "~> 19.5.0"
 
   cluster_name    = "${var.env_name}-eks-cluster"
   cluster_version = "1.23"
