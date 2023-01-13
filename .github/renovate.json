@@ -7,18 +7,7 @@
   "schedule": [
     "every friday"
   ],
-  "separateMinorPatch": true,
   "packageRules": [
-    {
-      "automerge": true,
-      "description": "Automerge all updates except major versions",
-      "matchUpdateTypes": [
-        "patch",
-        "pin",
-        "digest",
-        "minor"
-      ]
-    },
     {
       "description": "Assign reviewer for major updates",
       "matchUpdateTypes": [
@@ -33,9 +22,10 @@
       "description": "Group minor and patch updates into a single PR",
       "groupName": "dependencies",
       "managers": [
-        "terraform",
+        "github-actions",
         "pre-commit",
-        "dockerfile",
+        "terraform",
+        "tflint-plugin",
         "github-actions"
       ],
       "matchUpdateTypes": [
