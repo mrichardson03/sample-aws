@@ -7,6 +7,9 @@
   "schedule": [
     "every friday"
   ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "pre-commit": {
     "enabled": true
   },
