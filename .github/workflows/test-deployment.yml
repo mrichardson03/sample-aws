@@ -1,21 +1,21 @@
 name: "test-deployment"
 on:
-  schedule:
-    - cron: "0 0 * * 5"
-  workflow_dispatch:
+  workflow_run:
+    workflows: [pre-commit]
+    types:
+      - completed
 
 jobs:
   test-deployment:
     name: "Run test Terraform deployment"
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
 
     steps:
-      # Checkout the repository to the GitHub Actions runner
       - name: Check out repository
         uses: actions/checkout@v3
 

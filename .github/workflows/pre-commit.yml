@@ -1,7 +1,8 @@
 name: "pre-commit"
 on:
-  push:
   pull_request:
+    branches:
+      - main
 
 jobs:
   pre-commit:
@@ -18,16 +19,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
 
-      - name: Install pipenv
+      - name: Install pre-commit and dependencies
+        shell: bash
         run: |
-          pip install pre-commit==2.20.0
+          pip install pre-commit
 
-      - name: Install pre-commit dependencies
-        run: |
           curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
+          sudo tar -xzf terraform-docs.tar.gz -C /usr/bin/ terraform-docs
+          rm terraform-docs.tar.gz 2> /dev/null
 
-      - name: terraform fmt
-        run: pre-commit run terraform_fmt --color=always --show-diff-on-failure --all-files
+          curl -sSL "$(curl -s https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" > tflint.zip
+          sudo unzip -qq tflint.zip tflint -d /usr/bin/
+          rm tflint.zip 2> /dev/null
 
-      - name: terraform validate
-        run: pre-commit run terraform_validate --color=always --show-diff-on-failure --all-files
+      - name: Run pre-commit
+        shell: bash
+        run: pre-commit run --all-files --color always --show-diff-on-failure
