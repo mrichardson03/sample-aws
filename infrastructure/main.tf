@@ -162,7 +162,7 @@ module "mongodb_sg" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.5.0"
+  version = "~> 19.6.0"
 
   cluster_name    = "${var.env_name}-eks-cluster"
   cluster_version = "1.24"
@@ -214,7 +214,7 @@ module "eks" {
 
 module "ebs_csi_addon_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "~> 5.10.0"
+  version = "~> 5.11.0"
 
   role_name = "AmazonEKS_EBS_CSI_DriverRole"
 
