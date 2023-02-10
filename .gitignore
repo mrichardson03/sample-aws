@@ -2,6 +2,8 @@
 *.tfstate*
 *.tfvars
 
+**/.terraform.lock.hcl
+
 **/test/*.log
 
 wiz_k8s_installer.sh
