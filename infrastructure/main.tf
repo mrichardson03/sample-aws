@@ -112,7 +112,7 @@ resource "aws_iam_instance_profile" "mongodb" {
 
 module "mongodb_backup_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.6.0"
+  version = "~> 3.7.0"
 
   bucket_prefix = "${var.env_name}-mongodb-backup-"
   acl           = "public-read"
@@ -162,7 +162,7 @@ module "mongodb_sg" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.6.0"
+  version = "~> 19.7.0"
 
   cluster_name    = "${var.env_name}-eks-cluster"
   cluster_version = "1.24"
