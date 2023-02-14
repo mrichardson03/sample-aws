@@ -3,6 +3,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   pre-commit:
@@ -45,6 +46,10 @@ jobs:
       run:
         shell: bash
 
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -52,8 +57,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           aws-region: us-east-1
 
       - name: Set up Terraform
