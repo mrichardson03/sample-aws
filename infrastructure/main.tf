@@ -112,7 +112,7 @@ resource "aws_iam_instance_profile" "mongodb" {
 
 module "mongodb_backup_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.7.0"
+  version = "~> 3.8.0"
 
   bucket_prefix = "${var.env_name}-mongodb-backup-"
   acl           = "public-read"
@@ -214,7 +214,7 @@ module "eks" {
 
 module "ebs_csi_addon_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "~> 5.12.0"
+  version = "~> 5.13.0"
 
   role_name = "AmazonEKS_EBS_CSI_DriverRole"
 
