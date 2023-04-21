@@ -1,6 +1,7 @@
 variable "key_name" {
   description = "SSH key used to authenticate to the created instances."
   type        = string
+  default     = "wiz_aws2"
 }
 
 variable "env_name" {
@@ -21,7 +22,7 @@ variable "tags" {
   default = {
     Terraform   = "true"
     Environment = "sample-aws"
-    Owner       = "Your-Name-SE"
+    Owner       = "Rene-Siekermann-SE"
   }
 }
 
@@ -72,5 +73,5 @@ variable "budget_time_unit" {
 variable "budget_email" {
   description = "Email address to send budget alerts to."
   type        = string
-  default     = "your@email.com"
+  default     = "renesiekermann@gmail.com"
 }
