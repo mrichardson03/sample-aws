@@ -49,6 +49,8 @@ module "mongodb_instance" {
 
   iam_instance_profile = aws_iam_instance_profile.mongodb.name
 
+  associate_public_ip_address = true
+
   user_data = file("${path.module}/mongodb-user_data.sh")
 
   tags = var.tags
