@@ -5,6 +5,7 @@
 **/.terraform.lock.hcl
 
 **/test/*.log
+**/.test-data/*
 
 wiz_k8s_installer.sh
 wiz-kubernetes-connector-installer.*.log
