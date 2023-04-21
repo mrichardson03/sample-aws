@@ -18,6 +18,8 @@ module "vpc" {
 
   enable_dns_hostnames = true
 
+  map_public_ip_on_launch = true
+
   public_subnet_tags = {
     "kubernetes.io/cluster/${var.env_name}-eks-cluster" = "shared"
     "kubernetes.io/role/elb"                            = 1
