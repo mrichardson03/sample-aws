@@ -1,12 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
-  ],
-  "timezone": "America/New_York",
-  "schedule": [
+    "config:base",
     "schedule:monthly"
   ],
+  "timezone": "America/New_York",
   "pre-commit": {
     "enabled": true
   },
