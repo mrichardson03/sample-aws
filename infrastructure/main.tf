@@ -117,9 +117,29 @@ module "mongodb_backup_bucket" {
   version = "~> 3.8.1"
 
   bucket_prefix = "${var.env_name}-mongodb-backup-"
-  acl           = "public-read"
+
+  attach_policy = true
+  policy        = data.aws_iam_policy_document.allow_public_access.json
 
   tags = var.tags
+}
+
+data "aws_iam_policy_document" "allow_public_access" {
+  statement {
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+
+    actions = [
+      "s3:GetObject",
+    ]
+
+    resources = [
+      module.mongodb_backup_bucket.s3_bucket_arn,
+      "${module.mongodb_backup_bucket.s3_bucket_arn}/*",
+    ]
+  }
 }
 
 ###############################################################################
