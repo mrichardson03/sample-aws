@@ -5,7 +5,7 @@
   ],
   "timezone": "America/New_York",
   "schedule": [
-    "every friday"
+    "schedule:monthly"
   ],
   "pre-commit": {
     "enabled": true
