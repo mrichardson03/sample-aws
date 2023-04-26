@@ -123,39 +123,6 @@ module "mongodb_backup_bucket" {
   tags = var.tags
 }
 
-# # Need for avoid `Error putting S3 policy: AccessDenied: Access Denied`
-# resource "time_sleep" "wait_2_seconds" {
-#   depends_on      = [module.mongodb_backup_bucket.s3_bucket_website_domain]
-#   create_duration = "2s"
-# }
-
-# resource "aws_s3_bucket_policy" "read_access" {
-#   bucket = module.mongodb_backup_bucket.s3_bucket_id
-#   policy = data.aws_iam_policy_document.read_access.json
-
-#   depends_on = [
-#     time_sleep.wait_2_seconds
-#   ]
-# }
-
-# data "aws_iam_policy_document" "read_access" {
-#   statement {
-#     principals {
-#       type        = "*"
-#       identifiers = ["*"]
-#     }
-
-#     actions = [
-#       "s3:GetObject",
-#     ]
-
-#     resources = [
-#       module.mongodb_backup_bucket.s3_bucket_arn,
-#       "${module.mongodb_backup_bucket.s3_bucket_arn}/*",
-#     ]
-#   }
-# }
-
 ###############################################################################
 ## Security Groups                                                           ##
 ###############################################################################
