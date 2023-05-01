@@ -66,24 +66,24 @@ jobs:
       - name: Build infrastructure
         working-directory: infrastructure
         run: |
-          aws ec2 create-key-pair --key-name ci-test-$GITHUB_RUN_ID
+          aws ec2 create-key-pair --key-name ci-$GITHUB_RUN_ID
           terraform init
-          terraform apply -auto-approve -var "key_name=ci-test-$GITHUB_RUN_ID" -var "env_name=ci-test-$GITHUB_RUN_ID"
+          terraform apply -auto-approve -var "key_name=ci-$GITHUB_RUN_ID" -var "env_name=ci-$GITHUB_RUN_ID"
 
       - name: Deploy Kubernetes resources
         working-directory: kubernetes
         run: |
           terraform init
-          terraform apply -auto-approve -var "cluster_name=ci-test-$GITHUB_RUN_ID-eks-cluster"
+          terraform apply -auto-approve -var "cluster_name=ci-$GITHUB_RUN_ID-eks-cluster"
 
       - name: Tear down Kubernetes resources
         working-directory: kubernetes
         run: |
-          terraform destroy -auto-approve -var "cluster_name=ci-test-$GITHUB_RUN_ID"
+          terraform destroy -auto-approve -var "cluster_name=ci-$GITHUB_RUN_ID"
 
       - name: Tear down infrastructure
         if: ${{ always() }}
         working-directory: infrastructure
         run: |
-          terraform destroy -auto-approve -var "key_name=ci-test-$GITHUB_RUN_ID" -var "env_name=ci-test-$GITHUB_RUN_ID"
-          aws ec2 delete-key-pair --key-name ci-test-$GITHUB_RUN_ID
+          terraform destroy -auto-approve -var "key_name=ci-$GITHUB_RUN_ID" -var "env_name=ci-$GITHUB_RUN_ID"
+          aws ec2 delete-key-pair --key-name ci-$GITHUB_RUN_ID
