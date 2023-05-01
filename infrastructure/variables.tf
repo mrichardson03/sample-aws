@@ -31,8 +31,6 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-# Update with the oldest available AMI.  Find with:
-# aws ec2 describe-images --owners 099720109477 --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20201210"
 variable "ubuntu_1604_ami" {
   description = "AMI ID for Ubuntu 16.04 in us-east-1.  Used to create MongoDB instance."
   type        = string
