@@ -219,7 +219,7 @@ module "ebs_csi_addon_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.17.0"
 
-  role_name = "AmazonEKS_EBS_CSI_DriverRole"
+  role_name = "${var.env_name}-AmazonEKS_EBS_CSI_DriverRole"
 
   attach_ebs_csi_policy = true
 
@@ -235,7 +235,7 @@ module "ebs_csi_addon_irsa" {
 resource "aws_budgets_budget" "this" {
   count = var.create_budget ? 1 : 0
 
-  name         = var.budget_name
+  name         = "${var.env_name}-${var.budget_name}"
   budget_type  = "COST"
   limit_amount = var.budget_amount
   limit_unit   = var.budget_currency
