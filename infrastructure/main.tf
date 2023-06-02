@@ -116,9 +116,15 @@ module "mongodb_backup_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 3.11.0"
 
-  bucket_prefix            = "${var.env_name}-mongodb-backup-"
-  acl                      = "public-read"
+  bucket_prefix = "${var.env_name}-mongodb-backup-"
+  acl           = "public-read"
+
   control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+
+  block_public_acls       = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 
   tags = var.tags
 }
