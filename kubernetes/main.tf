@@ -32,7 +32,7 @@ resource "helm_release" "jenkins" {
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
   chart      = "jenkins"
-  version    = "4.3.29"
+  version    = "4.5.0"
 
   values = [
     file("${path.module}/jenkins-values.yaml")
