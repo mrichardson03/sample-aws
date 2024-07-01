@@ -171,7 +171,7 @@ module "mongodb_sg" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.15.0"
+  version = "~> 19.21.0"
 
   cluster_name    = "${var.env_name}-eks-cluster"
   cluster_version = "1.29"
